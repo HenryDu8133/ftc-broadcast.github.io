@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ftc车站广播系统</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        h3 { font-size: 1.25em; }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            color: #6a737d;
+            padding: 0 1em;
+            margin: 0 0 16px 0;
+        }
+        code {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: rgba(27, 31, 35, 0.05);
+            border-radius: 3px;
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 3px;
+            padding: 16px;
+            overflow: auto;
+            line-height: 1.45;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+        ul {
+            padding-left: 2em;
+        }
+        strong {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>ftc车站广播系统</h1>
+    <p>版本：beta1.1</p>
+    <p>By Henry_Du 813367384@qq.com</p>
+    <hr>
+    <h2>配置概要</h2>
+    <h3>列车</h3>
+    <blockquote>
+        <p>ftc车站广播系统通过获取列车时刻表解析列车终点站</p>
+        <p>同时根据列车名称格式解析列车类型(特急/普通)</p>
+    </blockquote>
+    <h4>列车名称</h4>
+    <p>为确保列车正确识别，<strong>请务必按照以下格式命名列车</strong></p>
+    <p><strong>普通</strong> <strong><code>[种别]线路+4位20进制编码</code></strong></p>
+    <blockquote>
+        <p>e.g. [普通]山手线1145</p>
+    </blockquote>
+    <p><strong>特急</strong> <strong><code>[特急]特急名No.x</code></strong></p>
+    <blockquote>
+        <p>e.g. [特急]山手线No.3456</p>
+    </blockquote>
+    <h4>列车时刻表</h4>
+    <p>系统将会解析获取到的列车时刻表，<strong>自动将时刻表最后一个车站名定为终点站</strong></p>
+    <p>请合理设置时刻表</p>
+    <hr>
+    <h3>车站</h3>
+    <blockquote>
+        <p>ftc车站广播系统通过获取车站名称解析车站编号和站台</p>
+    </blockquote>
+    <h4>车站名称</h4>
+    <p>为确保车站正确识别，<strong>请务必按照以下格式命名车站</strong></p>
+    <p><strong>格式</strong></p>
+    <p><strong><code>车站名+车站编号+&lt;空格&gt;+站台</code></strong></p>
+    <blockquote>
+        <p>e.g. 下北泽01-01 1</p>
+        <p>即下北泽(编号01-01) 1站台</p>
+    </blockquote>
+    <hr>
+    <h3>车站电脑</h3>
+    <p>车站电脑使用ComputerCraft模组的<code>高级计算机(computercraft:computer_advanced)</code></p>
+    <p>运行<code>station_broadcast.lua</code>程序</p>
+    <h4>外设连接</h4>
+    <p>为确保其正常运行，需要在以下位置放置外设</p>
+    <ul>
+        <li><strong>底部(bottom)</strong> ： <code>末影调制解调器(computercraft:wireless_modem_advanced)</code></li>
+        <li><strong>顶部(top)</strong> ： <code>有线调制解调器(computercraft:wired_modem)</code> -&gt; <code>网络线缆(computercraft:cable)</code> -&gt; <code>有线调制解调器(computercraft:wired_modem)</code> -&gt; <code>扬声器(computercraft:speaker)</code></li>
+        <li><strong>侧方(right/left)</strong> ：<code>高级显示器(computercraft:monitor_advanced)</code></li>
+        <li><strong>后方(back)</strong> ： <code>列车站点(create:track_station)</code></li>
+    </ul>
+    <hr>
+    <h3>中央处理服务器</h3>
+    <p>车站电脑使用ComputerCraft模组的<code>高级计算机(computercraft:computer_advanced)</code></p>
+    <p>运行<code>center_server.lua</code>程序</p>
+    <p><strong>中央处理服务器需要保持该区块持续加载</strong></p>
+</body>
+</html>
